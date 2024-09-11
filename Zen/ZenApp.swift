@@ -1,12 +1,10 @@
 import SwiftUI
 import SwiftData
-import ObjectiveC
 
 @main
 struct ZenApp: App {
     @StateObject private var appState = AppState()
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @State private var isInitialized = false
     
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
@@ -26,15 +24,11 @@ struct ZenApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(appState)
-                .preferredColorScheme(isInitialized ? appState.effectiveColorScheme : nil)
+                .environment(\.managedColorScheme, appState.effectiveColorScheme)
                 .onAppear {
-                    DispatchQueue.main.async {
-                        self.isInitialized = true
-                        (NSApplication.shared.delegate as? AppDelegate)?.appState = self.appState
-                        (NSApplication.shared.delegate as? AppDelegate)?.updateAppAppearance()
-                    }
+                    print("ContentView appeared")
+                    self.appDelegate.appState = self.appState
                 }
-                .modifier(ColorSchemeChangeModifier(appState: appState))
         }
         .modelContainer(sharedModelContainer)
         .handlesExternalEvents(matching: Set(arrayLiteral: "mainWindow"))
@@ -46,29 +40,14 @@ struct ZenApp: App {
     }
 }
 
-struct ColorSchemeChangeModifier: ViewModifier {
-    @ObservedObject var appState: AppState
-
-    func body(content: Content) -> some View {
-        content
-            #if compiler(>=5.9) // Swift 5.9 corresponds to Xcode 15 and macOS 14
-            .onChange(of: appState.effectiveColorScheme) { oldValue, newValue in
-                (NSApplication.shared.delegate as? AppDelegate)?.updateAppAppearance()
-            }
-            #else
-            .onChange(of: appState.effectiveColorScheme) { newValue in
-                (NSApplication.shared.delegate as? AppDelegate)?.updateAppAppearance()
-            }
-            #endif
-    }
-}
-
 class AppDelegate: NSObject, NSApplicationDelegate {
     var statusBarController: StatusBarController?
     var mainWindow: NSWindow?
     weak var appState: AppState?
+    private var colorSchemeObserver: NSObjectProtocol?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        print("applicationDidFinishLaunching")
         statusBarController = StatusBarController(appDelegate: self)
         
         DispatchQueue.main.async {
@@ -78,14 +57,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         
-        DistributedNotificationCenter.default().addObserver(
-            self,
-            selector: #selector(systemAppearanceChanged),
-            name: Notification.Name("AppleInterfaceThemeChangedNotification"),
-            object: nil
-        )
-        
-        updateAppAppearance()
+        colorSchemeObserver = NotificationCenter.default.addObserver(forName: .effectiveColorSchemeDidChange, object: nil, queue: .main) { [weak self] _ in
+            Task { @MainActor in
+                self?.updateWindowAppearance()
+            }
+        }
+    }
+    
+    func applicationDidBecomeActive(_ notification: Notification) {
+        print("applicationDidBecomeActive")
+        Task { @MainActor in
+            appState?.updateEffectiveColorScheme()
+            updateWindowAppearance()
+        }
+    }
+    
+    func applicationWillTerminate(_ notification: Notification) {
+        print("applicationWillTerminate")
+        if let observer = colorSchemeObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
     }
     
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
@@ -100,6 +91,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             } else {
                 window.makeKeyAndOrderFront(nil)
                 NSApp.setActivationPolicy(.regular)
+                Task { @MainActor in
+                    appState?.updateEffectiveColorScheme()
+                    updateWindowAppearance()
+                }
             }
         } else {
             NSWorkspace.shared.open(URL(string: "zen://mainWindow")!)
@@ -121,18 +116,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         window.makeKeyAndOrderFront(nil)
         NSApp.setActivationPolicy(.regular)
+        
+        Task { @MainActor in
+            updateWindowAppearance()
+        }
     }
     
-    @objc func systemAppearanceChanged() {
-        DispatchQueue.main.async { [weak self] in
-            self?.appState?.updateColorScheme()
-            self?.updateAppAppearance()
+    @MainActor
+    private func updateWindowAppearance() {
+        guard let window = mainWindow, let appState = appState else { return }
+        
+        let appearance: NSAppearance
+        switch appState.effectiveColorScheme {
+        case .light:
+            appearance = NSAppearance(named: .aqua)!
+        case .dark:
+            appearance = NSAppearance(named: .darkAqua)!
+        @unknown default:
+            appearance = NSAppearance(named: .aqua)!
         }
-    }
-
-    func updateAppAppearance() {
-        if let effectiveAppearance = appState?.effectiveColorScheme {
-            NSApp.appearance = NSAppearance(named: effectiveAppearance == .dark ? .darkAqua : .aqua)
-        }
+        
+        window.appearance = appearance
     }
 }

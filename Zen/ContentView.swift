@@ -1,10 +1,10 @@
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {
     @EnvironmentObject private var appState: AppState
     @State private var selectedView: String? = "pomodoro"
     @StateObject private var pomodoroViewModel = PomodoroViewModel()
+    @Environment(\.managedColorScheme) private var colorScheme
 
     var body: some View {
         HStack(spacing: 0) {
@@ -34,8 +34,11 @@ struct ContentView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .preferredColorScheme(appState.effectiveColorScheme)
         .frame(width: 600, height: 400)
+        .managedColorScheme($appState.effectiveColorScheme)
+        .onChange(of: colorScheme) { oldValue, newValue in
+            print("ContentView detected colorScheme change: \(oldValue) -> \(newValue)")
+        }
     }
 
     private func MenuButton(title: String, imageName: String, tag: String) -> some View {

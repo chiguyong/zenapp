@@ -1,55 +1,71 @@
 import SwiftUI
+import Combine
 
+enum ColorSchemeSelection: Int, Codable {
+    case system = 0
+    case light = 1
+    case dark = 2
+}
+
+@MainActor
 class AppState: ObservableObject {
-    @AppStorage("colorScheme") var colorSchemeRawValue: Int = 0 {
+    @Published var colorSchemeSelection: ColorSchemeSelection {
         didSet {
-            print("colorSchemeRawValue changed to: \(colorSchemeRawValue)")
-            updateColorScheme()
+            UserDefaults.standard.set(colorSchemeSelection.rawValue, forKey: "colorSchemeSelection")
+            updateEffectiveColorScheme()
         }
     }
     
-    @Published var colorScheme: ColorScheme?
-    
-    var effectiveColorScheme: ColorScheme {
-        colorScheme ?? getCurrentSystemColorScheme()
+    @Published var effectiveColorScheme: ColorScheme {
+        didSet {
+            print("EffectiveColorScheme set to: \(effectiveColorScheme)")
+        }
     }
+    
+    private var systemColorSchemeObserver: AnyCancellable?
     
     init() {
-        print("AppState initialized")
-        updateColorScheme()
+        let savedSelection = UserDefaults.standard.integer(forKey: "colorSchemeSelection")
+        self.colorSchemeSelection = ColorSchemeSelection(rawValue: savedSelection) ?? .system
+        self.effectiveColorScheme = .light
+        
+        updateEffectiveColorScheme()
+        observeSystemColorScheme()
+        
+        print("AppState initialized with colorSchemeSelection: \(colorSchemeSelection), effectiveColorScheme: \(effectiveColorScheme)")
     }
     
-    func updateColorScheme() {
-        print("updateColorScheme called")
-        switch colorSchemeRawValue {
-        case 1:
-            colorScheme = .light
-        case 2:
-            colorScheme = .dark
-        default:
-            colorScheme = nil
-        }
-    }
-    
-    func setColorScheme(_ newScheme: ColorScheme?) {
-        print("setColorScheme called with: \(String(describing: newScheme))")
-        switch newScheme {
+    func updateEffectiveColorScheme() {
+        let newColorScheme: ColorScheme
+        switch colorSchemeSelection {
         case .light:
-            colorSchemeRawValue = 1
+            newColorScheme = .light
         case .dark:
-            colorSchemeRawValue = 2
-        case .none:
-            colorSchemeRawValue = 0
-        @unknown default:
-            colorSchemeRawValue = 0
+            newColorScheme = .dark
+        case .system:
+            newColorScheme = getCurrentSystemColorScheme()
+        }
+        
+        if newColorScheme != effectiveColorScheme {
+            effectiveColorScheme = newColorScheme
+            print("EffectiveColorScheme updated to: \(effectiveColorScheme)")
+            NotificationCenter.default.post(name: .effectiveColorSchemeDidChange, object: nil)
         }
     }
     
-    func getCurrentSystemColorScheme() -> ColorScheme {
-        guard let appearance = NSApp.effectiveAppearance.bestMatch(from: [.darkAqua, .aqua]) else {
-            print("Warning: Unable to determine system appearance, defaulting to light mode")
-            return .light
-        }
-        return appearance == .darkAqua ? .dark : .light
+    private func getCurrentSystemColorScheme() -> ColorScheme {
+        NSApplication.shared.effectiveAppearance.name == .darkAqua ? .dark : .light
     }
+    
+    private func observeSystemColorScheme() {
+        systemColorSchemeObserver = DistributedNotificationCenter.default().publisher(for: .init("AppleInterfaceThemeChangedNotification"), object: nil)
+            .debounce(for: .milliseconds(300), scheduler: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.updateEffectiveColorScheme()
+            }
+    }
+}
+
+extension Notification.Name {
+    static let effectiveColorSchemeDidChange = Notification.Name("effectiveColorSchemeDidChange")
 }

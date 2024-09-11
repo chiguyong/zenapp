@@ -31,6 +31,7 @@
 		5DA249442C8FE17D00739452 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA249432C8FE17D00739452 /* SettingsView.swift */; };
 		5DA249462C8FF2C900739452 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA249452C8FF2C900739452 /* AppState.swift */; };
 		5DA249492C90197800739452 /* CustomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA249482C90197800739452 /* CustomViews.swift */; };
+		5DA2494D2C9174A200739452 /* ColorSchemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2494C2C9174A200739452 /* ColorSchemeManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		5DA249432C8FE17D00739452 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		5DA249452C8FF2C900739452 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		5DA249482C90197800739452 /* CustomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViews.swift; sourceTree = "<group>"; };
+		5DA2494C2C9174A200739452 /* ColorSchemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +210,7 @@
 		5DA2491B2C8EE40C00739452 /* Utilites */ = {
 			isa = PBXGroup;
 			children = (
+				5DA2494C2C9174A200739452 /* ColorSchemeManager.swift */,
 			);
 			path = Utilites;
 			sourceTree = "<group>";
@@ -464,6 +467,7 @@
 			files = (
 				5DA249372C8EE4E000739452 /* WhiteNoiseManager.swift in Sources */,
 				5DA2493A2C8EE62400739452 /* StatusBarController.swift in Sources */,
+				5DA2494D2C9174A200739452 /* ColorSchemeManager.swift in Sources */,
 				5DA248ED2C8EE3D500739452 /* ContentView.swift in Sources */,
 				5DA249462C8FF2C900739452 /* AppState.swift in Sources */,
 				5DA248EF2C8EE3D500739452 /* Item.swift in Sources */,

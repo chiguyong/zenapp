@@ -3,33 +3,11 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject private var appState: AppState
     @StateObject private var viewModel = SettingsViewModel()
-    @Environment(\.colorScheme) private var systemColorScheme
     
     var body: some View {
         Form {
             Section(header: Text("主题设置").font(.headline)) {
-                Picker("颜色主题", selection: Binding(
-                    get: {
-                        appState.colorSchemeRawValue
-                    },
-                    set: { newValue in
-                        switch newValue {
-                        case 0:
-                            appState.setColorScheme(nil)
-                        case 1:
-                            appState.setColorScheme(.light)
-                        case 2:
-                            appState.setColorScheme(.dark)
-                        default:
-                            break
-                        }
-                    }
-                )) {
-                    Text("跟随系统").tag(0)
-                    Text("浅色").tag(1)
-                    Text("深色").tag(2)
-                }
-                .pickerStyle(SegmentedPickerStyle())
+                ColorSchemeSettingView()
             }
             .padding(.bottom, 20)
             
@@ -41,6 +19,25 @@ struct SettingsView: View {
             }
         }
         .padding()
-        .preferredColorScheme(appState.effectiveColorScheme)
+    }
+}
+
+struct ColorSchemeSettingView: View {
+    @EnvironmentObject var appState: AppState
+
+    var body: some View {
+        Picker("颜色主题", selection: $appState.colorSchemeSelection) {
+            Text("跟随系统").tag(ColorSchemeSelection.system)
+            Text("浅色").tag(ColorSchemeSelection.light)
+            Text("深色").tag(ColorSchemeSelection.dark)
+        }
+        .pickerStyle(SegmentedPickerStyle())
+    }
+}
+
+struct SettingsView_Previews: PreviewProvider {
+    static var previews: some View {
+        SettingsView()
+            .environmentObject(AppState())
     }
 }

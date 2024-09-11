@@ -4,6 +4,7 @@ struct WhiteNoiseView: View {
     @StateObject private var viewModel = WhiteNoiseViewModel()
     @EnvironmentObject private var appState: AppState
     @Environment(\.colorScheme) var colorScheme
+    @State private var forceUpdate: Bool = false
     
     var body: some View {
         VStack(spacing: 20) {
@@ -32,6 +33,10 @@ struct WhiteNoiseView: View {
         }
         .padding()
         .customBackground()
-        .environment(\.colorScheme, appState.colorScheme ?? colorScheme)
+        .onChange(of: appState.effectiveColorScheme) { oldValue, newValue in
+            print("ColorScheme changed from: \(oldValue) to: \(newValue) in WhiteNoiseView")
+            forceUpdate.toggle()
+        }
+        .id(forceUpdate)
     }
 }
