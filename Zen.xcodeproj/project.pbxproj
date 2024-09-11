@@ -15,6 +15,22 @@
 		5DA248FF2C8EE3D700739452 /* ZenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA248FE2C8EE3D700739452 /* ZenTests.swift */; };
 		5DA249092C8EE3D700739452 /* ZenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA249082C8EE3D700739452 /* ZenUITests.swift */; };
 		5DA2490B2C8EE3D700739452 /* ZenUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2490A2C8EE3D700739452 /* ZenUITestsLaunchTests.swift */; };
+		5DA249252C8EE47100739452 /* PomodoroSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA249242C8EE47100739452 /* PomodoroSession.swift */; };
+		5DA249272C8EE47E00739452 /* WhiteNoiseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA249262C8EE47E00739452 /* WhiteNoiseSettings.swift */; };
+		5DA249292C8EE48A00739452 /* PomodoroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA249282C8EE48A00739452 /* PomodoroView.swift */; };
+		5DA2492B2C8EE49600739452 /* PomodoroTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2492A2C8EE49600739452 /* PomodoroTimerView.swift */; };
+		5DA2492D2C8EE4A300739452 /* PomodoroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2492C2C8EE4A300739452 /* PomodoroViewModel.swift */; };
+		5DA2492F2C8EE4B300739452 /* PomodoroManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2492E2C8EE4B300739452 /* PomodoroManager.swift */; };
+		5DA249312C8EE4C200739452 /* WhiteNoiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA249302C8EE4C200739452 /* WhiteNoiseView.swift */; };
+		5DA249332C8EE4CC00739452 /* WhiteNoisePlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA249322C8EE4CC00739452 /* WhiteNoisePlayerView.swift */; };
+		5DA249352C8EE4D600739452 /* WhiteNoiseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA249342C8EE4D600739452 /* WhiteNoiseViewModel.swift */; };
+		5DA249372C8EE4E000739452 /* WhiteNoiseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA249362C8EE4E000739452 /* WhiteNoiseManager.swift */; };
+		5DA2493A2C8EE62400739452 /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA249392C8EE62400739452 /* StatusBarController.swift */; };
+		5DA2493C2C8EED9700739452 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2493B2C8EED9700739452 /* MainWindowController.swift */; };
+		5DA249422C8FE14E00739452 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA249412C8FE14E00739452 /* SettingsViewModel.swift */; };
+		5DA249442C8FE17D00739452 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA249432C8FE17D00739452 /* SettingsView.swift */; };
+		5DA249462C8FF2C900739452 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA249452C8FF2C900739452 /* AppState.swift */; };
+		5DA249492C90197800739452 /* CustomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA249482C90197800739452 /* CustomViews.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +63,22 @@
 		5DA249042C8EE3D700739452 /* ZenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZenUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DA249082C8EE3D700739452 /* ZenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZenUITests.swift; sourceTree = "<group>"; };
 		5DA2490A2C8EE3D700739452 /* ZenUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZenUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5DA249242C8EE47100739452 /* PomodoroSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroSession.swift; sourceTree = "<group>"; };
+		5DA249262C8EE47E00739452 /* WhiteNoiseSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteNoiseSettings.swift; sourceTree = "<group>"; };
+		5DA249282C8EE48A00739452 /* PomodoroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroView.swift; sourceTree = "<group>"; };
+		5DA2492A2C8EE49600739452 /* PomodoroTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroTimerView.swift; sourceTree = "<group>"; };
+		5DA2492C2C8EE4A300739452 /* PomodoroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroViewModel.swift; sourceTree = "<group>"; };
+		5DA2492E2C8EE4B300739452 /* PomodoroManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroManager.swift; sourceTree = "<group>"; };
+		5DA249302C8EE4C200739452 /* WhiteNoiseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteNoiseView.swift; sourceTree = "<group>"; };
+		5DA249322C8EE4CC00739452 /* WhiteNoisePlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteNoisePlayerView.swift; sourceTree = "<group>"; };
+		5DA249342C8EE4D600739452 /* WhiteNoiseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteNoiseViewModel.swift; sourceTree = "<group>"; };
+		5DA249362C8EE4E000739452 /* WhiteNoiseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteNoiseManager.swift; sourceTree = "<group>"; };
+		5DA249392C8EE62400739452 /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
+		5DA2493B2C8EED9700739452 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		5DA249412C8FE14E00739452 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		5DA249432C8FE17D00739452 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		5DA249452C8FF2C900739452 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		5DA249482C90197800739452 /* CustomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViews.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +129,17 @@
 		5DA248E92C8EE3D500739452 /* Zen */ = {
 			isa = PBXGroup;
 			children = (
+				5DA249382C8EE61400739452 /* Core */,
+				5DA249192C8EE3FB00739452 /* Shared */,
+				5DA249182C8EE3F100739452 /* Features */,
+				5DA249172C8EE3EB00739452 /* Models */,
 				5DA248EA2C8EE3D500739452 /* ZenApp.swift */,
 				5DA248EC2C8EE3D500739452 /* ContentView.swift */,
 				5DA248EE2C8EE3D500739452 /* Item.swift */,
 				5DA248F02C8EE3D700739452 /* Assets.xcassets */,
 				5DA248F52C8EE3D700739452 /* Zen.entitlements */,
 				5DA248F22C8EE3D700739452 /* Preview Content */,
+				5DA249452C8FF2C900739452 /* AppState.swift */,
 			);
 			path = Zen;
 			sourceTree = "<group>";
@@ -130,6 +167,169 @@
 				5DA2490A2C8EE3D700739452 /* ZenUITestsLaunchTests.swift */,
 			);
 			path = ZenUITests;
+			sourceTree = "<group>";
+		};
+		5DA249172C8EE3EB00739452 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5DA249242C8EE47100739452 /* PomodoroSession.swift */,
+				5DA249262C8EE47E00739452 /* WhiteNoiseSettings.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5DA249182C8EE3F100739452 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				5DA2493D2C8FE11600739452 /* Settings */,
+				5DA2491D2C8EE42700739452 /* WhiteNoise */,
+				5DA2491C2C8EE41B00739452 /* Pomodoro */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		5DA249192C8EE3FB00739452 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				5DA249472C90196300739452 /* Views */,
+				5DA2491B2C8EE40C00739452 /* Utilites */,
+				5DA2491A2C8EE40400739452 /* Extensions */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		5DA2491A2C8EE40400739452 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5DA2491B2C8EE40C00739452 /* Utilites */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilites;
+			sourceTree = "<group>";
+		};
+		5DA2491C2C8EE41B00739452 /* Pomodoro */ = {
+			isa = PBXGroup;
+			children = (
+				5DA249232C8EE46000739452 /* Views */,
+				5DA249222C8EE45900739452 /* ViewModels */,
+				5DA249212C8EE45100739452 /* Services */,
+			);
+			path = Pomodoro;
+			sourceTree = "<group>";
+		};
+		5DA2491D2C8EE42700739452 /* WhiteNoise */ = {
+			isa = PBXGroup;
+			children = (
+				5DA249202C8EE44500739452 /* Services */,
+				5DA2491F2C8EE43B00739452 /* ViewModels */,
+				5DA2491E2C8EE43300739452 /* Views */,
+			);
+			path = WhiteNoise;
+			sourceTree = "<group>";
+		};
+		5DA2491E2C8EE43300739452 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5DA249302C8EE4C200739452 /* WhiteNoiseView.swift */,
+				5DA249322C8EE4CC00739452 /* WhiteNoisePlayerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5DA2491F2C8EE43B00739452 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				5DA249342C8EE4D600739452 /* WhiteNoiseViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		5DA249202C8EE44500739452 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				5DA249362C8EE4E000739452 /* WhiteNoiseManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		5DA249212C8EE45100739452 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				5DA2492E2C8EE4B300739452 /* PomodoroManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		5DA249222C8EE45900739452 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				5DA2492C2C8EE4A300739452 /* PomodoroViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		5DA249232C8EE46000739452 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5DA249282C8EE48A00739452 /* PomodoroView.swift */,
+				5DA2492A2C8EE49600739452 /* PomodoroTimerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5DA249382C8EE61400739452 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				5DA249392C8EE62400739452 /* StatusBarController.swift */,
+				5DA2493B2C8EED9700739452 /* MainWindowController.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		5DA2493D2C8FE11600739452 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				5DA249402C8FE13600739452 /* Views */,
+				5DA2493F2C8FE12B00739452 /* ViewModels */,
+				5DA2493E2C8FE12000739452 /* Services */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		5DA2493E2C8FE12000739452 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		5DA2493F2C8FE12B00739452 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				5DA249412C8FE14E00739452 /* SettingsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		5DA249402C8FE13600739452 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5DA249432C8FE17D00739452 /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5DA249472C90196300739452 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5DA249482C90197800739452 /* CustomViews.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,9 +462,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DA249372C8EE4E000739452 /* WhiteNoiseManager.swift in Sources */,
+				5DA2493A2C8EE62400739452 /* StatusBarController.swift in Sources */,
 				5DA248ED2C8EE3D500739452 /* ContentView.swift in Sources */,
+				5DA249462C8FF2C900739452 /* AppState.swift in Sources */,
 				5DA248EF2C8EE3D500739452 /* Item.swift in Sources */,
+				5DA249332C8EE4CC00739452 /* WhiteNoisePlayerView.swift in Sources */,
+				5DA249442C8FE17D00739452 /* SettingsView.swift in Sources */,
+				5DA2492B2C8EE49600739452 /* PomodoroTimerView.swift in Sources */,
+				5DA249312C8EE4C200739452 /* WhiteNoiseView.swift in Sources */,
 				5DA248EB2C8EE3D500739452 /* ZenApp.swift in Sources */,
+				5DA249292C8EE48A00739452 /* PomodoroView.swift in Sources */,
+				5DA249352C8EE4D600739452 /* WhiteNoiseViewModel.swift in Sources */,
+				5DA2492F2C8EE4B300739452 /* PomodoroManager.swift in Sources */,
+				5DA2492D2C8EE4A300739452 /* PomodoroViewModel.swift in Sources */,
+				5DA249272C8EE47E00739452 /* WhiteNoiseSettings.swift in Sources */,
+				5DA249492C90197800739452 /* CustomViews.swift in Sources */,
+				5DA249252C8EE47100739452 /* PomodoroSession.swift in Sources */,
+				5DA2493C2C8EED9700739452 /* MainWindowController.swift in Sources */,
+				5DA249422C8FE14E00739452 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

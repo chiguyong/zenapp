@@ -1,59 +1,57 @@
-//
-//  ContentView.swift
-//  Zen
-//
-//  Created by 池谷湧 on 2024/9/9.
-//
-
 import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @EnvironmentObject private var appState: AppState
+    @State private var selectedView: String? = "pomodoro"
+    @StateObject private var pomodoroViewModel = PomodoroViewModel()
 
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
+        HStack(spacing: 0) {
+            // 左侧菜单
+            VStack(spacing: 10) {
+                MenuButton(title: "专注", imageName: "timer", tag: "pomodoro")
+                MenuButton(title: "白噪音", imageName: "waveform", tag: "whitenoise")
+                MenuButton(title: "设置", imageName: "gear", tag: "settings")
+                Spacer()
+            }
+            .frame(width: 70)
+            .padding(.top, 20)
+            .background(Color(NSColor.windowBackgroundColor))
+
+            // 右侧内容区域
+            Group {
+                if selectedView == "pomodoro" {
+                    PomodoroView(viewModel: pomodoroViewModel)
+                } else if selectedView == "whitenoise" {
+                    WhiteNoisePlayerView(viewModel: WhiteNoiseViewModel())
+                } else if selectedView == "settings" {
+                    SettingsView()
+                } else {
+                    Text("选择一个功能开始")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
-                .onDelete(perform: deleteItems)
             }
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-            .toolbar {
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        .preferredColorScheme(appState.effectiveColorScheme)
+        .frame(width: 600, height: 400)
     }
 
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
+    private func MenuButton(title: String, imageName: String, tag: String) -> some View {
+        Button(action: {
+            selectedView = tag
+        }) {
+            VStack {
+                Image(systemName: imageName)
+                    .font(.system(size: 24))
+                Text(title)
+                    .font(.caption2)
             }
+            .frame(width: 60, height: 60)
         }
+        .buttonStyle(PlainButtonStyle())
+        .background(selectedView == tag ? Color.accentColor.opacity(0.2) : Color.clear)
+        .cornerRadius(8)
     }
-}
-
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
 }
